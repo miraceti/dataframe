@@ -1,0 +1,53 @@
+DataComPy Comparison
+--------------------
+
+DataFrame Summary
+-----------------
+
+  DataFrame  Columns  Rows
+0       df1        4     7
+1       df2        4     7
+
+Column Summary
+--------------
+
+Number of columns in common: 4
+Number of columns in df1 but not in df2: 0
+Number of columns in df2 but not in df1: 0
+
+Row Summary
+-----------
+
+Matched on: nom, pclid
+Any duplicates on match values: No
+Absolute Tolerance: 0
+Relative Tolerance: 0
+Number of rows in common: 7
+Number of rows in df1 but not in df2: 0
+Number of rows in df2 but not in df1: 0
+
+Number of rows with some compared columns unequal: 4
+Number of rows with all compared columns equal: 3
+
+Column Comparison
+-----------------
+
+Number of columns compared with some values unequal: 1
+Number of columns compared with all values equal: 3
+Total number of values which compare unequal: 4
+
+Columns with Unequal Values or Types
+------------------------------------
+
+           Column df1 dtype df2 dtype  # Unequal  Max Diff  # Null Diff
+0  cc_pla_gest_id     int64     int64          4    1080.0            0
+
+Sample Rows with Unequal Values
+-------------------------------
+
+  nom  pclid  cc_pla_gest_id (df1)  cc_pla_gest_id (df2)
+2   c      3                   113                   123
+5   f      4                   114                   118
+6   g      4                   114                  1194
+0   a      1                   111                   121
+
