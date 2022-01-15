@@ -49,19 +49,23 @@ df.loc[2:4,['b','c']]
 
 
 print(df.loc[df['c']>0,['b','c','d']])
-
+print('dfc superieure 0')
 print(df.loc[df['c']>0])
-
+print("dflocdfc superieure 0")
 print(df[df['c']>0])
-
+print("dfdfc superieure 0")
 
 data ={}
 for col in ['foo','bar','baz']:
     for row in ['a','b','c','c']:
         data.setdefault(col,{})[row]=np.random.randn()
 print(data)
+print("data")
 print(DataFrame(data))
+print("dataframedata")
 
 del data['foo']['c']
 print(data)
+print("datafroo")
 print(DataFrame(data))
+print("dataframedatafoo")
