@@ -1,0 +1,55 @@
+DataComPy Comparison
+--------------------
+
+DataFrame Summary
+-----------------
+
+   DataFrame  Columns  Rows
+0  AVANT_MAJ        4    19
+1  APRES_MAJ        4    19
+
+Column Summary
+--------------
+
+Number of columns in common: 4
+Number of columns in AVANT_MAJ but not in APRES_MAJ: 0
+Number of columns in APRES_MAJ but not in AVANT_MAJ: 0
+
+Row Summary
+-----------
+
+Matched on: client_id, ordre_contrat
+Any duplicates on match values: No
+Absolute Tolerance: 0
+Relative Tolerance: 0
+Number of rows in common: 19
+Number of rows in AVANT_MAJ but not in APRES_MAJ: 0
+Number of rows in APRES_MAJ but not in AVANT_MAJ: 0
+
+Number of rows with some compared columns unequal: 2
+Number of rows with all compared columns equal: 17
+
+Column Comparison
+-----------------
+
+Number of columns compared with some values unequal: 2
+Number of columns compared with all values equal: 2
+Total number of values which compare unequal: 3
+
+Columns with Unequal Values or Types
+------------------------------------
+
+      Column AVANT_MAJ dtype APRES_MAJ dtype  # Unequal  Max Diff  # Null Diff
+0    user_id           int64           int64          1     900.0            0
+1  user_name          object          object          2       0.0            0
+
+Sample Rows with Unequal Values
+-------------------------------
+
+   client_id  ordre_contrat  user_id (AVANT_MAJ)  user_id (APRES_MAJ)
+9         10             19                  129                 1029
+
+    client_id  ordre_contrat user_name (AVANT_MAJ) user_name (APRES_MAJ)
+18         19             28                 tata7                 tata8
+9          10             19                 titi4                  eric
+
