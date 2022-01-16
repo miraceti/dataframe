@@ -46,8 +46,8 @@ Sample Rows with Unequal Values
 -------------------------------
 
   nom  pclid  cc_pla_gest_id (AVANT_MAJ)  cc_pla_gest_id (APRES_MAJ)
-5   f      4                         114                         118
 6   g      4                         114                        1194
-0   a      1                         111                         121
+5   f      4                         114                         118
 2   c      3                         113                         123
+0   a      1                         111                         121
 

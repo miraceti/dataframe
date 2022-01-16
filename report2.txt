@@ -46,8 +46,8 @@ Sample Rows with Unequal Values
 -------------------------------
 
   nom  pclid  cc_pla_gest_id (df1)  cc_pla_gest_id (df2)
-2   c      3                   113                   123
-0   a      1                   111                   121
 6   g      4                   114                  1194
+2   c      3                   113                   123
 5   f      4                   114                   118
+0   a      1                   111                   121
 
