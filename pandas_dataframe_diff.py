@@ -51,10 +51,26 @@ def compare_2_dfs(df1,df2):
           - on a une nouvelle colonne "_merge" qui est :
             - égale à "left_only" si la valeur est presente dans df1 et pas dans df2
             - égale à "both" si la valeur est dans les 2 dataframes
+            - égale à "right_only" si la valeur est dans df2 mais n'est pas dans df1
         - la valeur de retour est un dataframe avec la nouvelle colonne (df1 + colonne '_merge')
     """
     df3 = df1.merge(df2, indicator=True, how='outer')
     return df3
+#############################################################################################
+
+#############################################################################################
+def difference(df1,df2):
+    """fonction de difference de 2 dataframe avec les mêmes colonnes mais des valeurs différentes sur certazines lignes:
+    - la valeur retournée est le dataframe des lignes en écart entre df1 et df2 avec 2 nouvelles colonnes ajoutées
+        - les seules lignes du dataframe retourné sont celles qui ont des valeurs différentes entre df1 et df2
+        - la colonne ajoutée "before" qui contient la valeur df1 différente de la valeur df2
+        - la colonne ajoutée "after" qui contient la valeur df2 différente de la valeur df1
+    """
+    dif = df1.melt()
+    dif.columns=['Columns', 'Before']
+    dif.insert(2, 'After', df2.melt().value)
+    difference_df = dif[dif.Before!=dif.After]
+    return(difference_df)
 #############################################################################################
     
 print("\n******************************")
@@ -62,7 +78,7 @@ df33 = compare_2_dfs(df1,df3)
 print("\n DF33\n",df33)
 print("\n******************************")
 
-# on retire les lignes quand la comollen'_merge' contient both
+# on retire les lignes quand la colonne'_merge' contient both
 print("\n******************************")
 df34 = df33.loc[lambda v: v['_merge'] != 'both']
 print("\n DF34\n",df34)
