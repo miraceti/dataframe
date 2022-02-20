@@ -44,3 +44,32 @@ df32 = df31[['nom','pid','cid','pass']]
 print(df32)
 
 #############################################################################################
+def compare_2_dfs(df1,df2):
+    """Fonction de comparaison de 2 dataframes : 
+       - le premier (df1) est la reference
+       - le second est le filtre (df2) :
+          - on a une nouvelle colonne "_merge" qui est :
+            - égale à "left_only" si la valeur est presente dans df1 et pas dans df2
+            - égale à "both" si la valeur est dans les 2 dataframes
+        - la valeur de retour est un dataframe avec la nouvelle colonne (df1 + colonne '_merge')
+    """
+    df3 = df1.merge(df2, indicator=True, how='outer')
+    return df3
+#############################################################################################
+    
+print("\n******************************")
+df33 = compare_2_dfs(df1,df3) 
+print("\n DF33\n",df33)
+print("\n******************************")
+
+# on retire les lignes quand la comollen'_merge' contient both
+print("\n******************************")
+df34 = df33.loc[lambda v: v['_merge'] != 'both']
+print("\n DF34\n",df34)
+print("\n******************************")
+
+# on exclu la dernière colonne, ou une colonne spécifique (ici la colonne '_merge')
+print("\n******************************")
+df35 = df34.loc[:,df34.columns != '_merge']
+print("\n DF35\n",df35)
+print("\n******************************")
