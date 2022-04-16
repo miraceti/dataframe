@@ -101,8 +101,59 @@ print("\nnewdfhorizontalb\n",newdfhorizontalb)
 
 #2 traitement de colonnes text ou nombre
 newdfhorizontalc = dfhorizontal.copy()
+
 newdfhorizontalc['contrat'] = newdfhorizontalc['contrat'].fillna(value='cx')
 print("\nnewdfhorizontalc\n",newdfhorizontalc)
+
 newdfhorizontalc = newdfhorizontalc.fillna(value=0)
 print("\nnewdfhorizontalc\n",newdfhorizontalc)
 
+#dataframe depuis liste de tuples
+employees =[(1,'a',10,'aa',11),
+            (2,'a',20,'aa',21),
+            (3,'a',30,'aa',31),
+            (4,'a',40,'aa',41)]
+df4 = pd.DataFrame(employees,
+                   columns=['id','nom','age','city','experience'],
+                   index=['e1','e2','e3','e4'])
+print("\ndf4\n",df4)
+
+#rowlabel
+print(df4.index)
+print(df4.index[2])
+
+#columnames
+print(df4.columns)
+print(df4.columns[2])
+
+#transposition du dataframe
+df4_transpose = df4.T
+print("\ndf4_transpose\n",df4_transpose)
+
+#fataframe from dict
+employees = {'nom':['a','b','c','d'],
+               'age':[10,20,30,40],
+               'city':['aa','bb','cc','dd'],
+               'experience':[11,21,31,41]}
+dfemployees = pd.DataFrame(employees)
+print("\ndfemployees\n",dfemployees)
+
+
+#sub df
+subsetdf4a = df4.loc[lambda x : (x['age'] > 20).tolist()]
+print("\nsubsetdf4a\n",subsetdf4a)
+
+subsetdf4b = df4.loc[:,['age','city','nom']]
+print("\nsubsetdf4b\n",subsetdf4b)
+
+#select a cellvalue
+cellvalue = df4.loc['e4','age'] # [ligne,colonne]
+print(cellvalue)
+
+subsetdf4c = df4.loc[['e1','e3'],['city','age']]
+print("\nsubsetdf4c\n",subsetdf4c)
+
+#mise à 0  du'une ligne
+subsetdf4d = df4.copy()
+subsetdf4d.loc['e3']=0
+print("\nsubsetdf4d\n",subsetdf4d)
