@@ -157,3 +157,96 @@ print("\nsubsetdf4c\n",subsetdf4c)
 subsetdf4d = df4.copy()
 subsetdf4d.loc['e3']=0
 print("\nsubsetdf4d\n",subsetdf4d)
+
+
+#appliquer une fonction a un dataframe
+# methode 1
+df5 = df4.copy()
+print("\ndf5\n",df5)
+df5['age'] = df5['age'].apply(lambda x: x+1)
+print("\ndf5a\n",df5)
+
+# methode 2
+def addone(v):
+    v += 1
+    return v
+
+df5b = df4.copy()
+df5b['age'] = df5b.apply(lambda x: addone(x.age), axis=1)
+print("\ndf5b\n",df5b)
+
+# methode 3
+df5c = df4.copy()
+df5c['age'] = df5c['age'].map(addone)
+print("\ndf5c\n",df5c)
+
+# methode 4
+df5d = df4.copy()
+df5d['age'] = df5d['age'].map(lambda x: x + 1)
+print("\ndf5d\n",df5d)
+
+# methode 5 plusieurs colonnes
+df5e = df4.copy()
+df5e[['age','experience']] = df5e[['age','experience']].apply(lambda x: x + 1)
+print("\ndf5e\n",df5e)
+
+# methode 6
+df5f = df4.copy()
+df5f['age'] = df5f['age'].apply(addone)
+print("\ndf5f\n",df5f)
+
+# group by une colonne
+df6 = df1.copy()
+df6 =  df6.set_index('contrat')
+print("\nDF6a\n",df6)
+df6a = df6.groupby('contrat').agg(
+             m1_sum = ('m1', 'sum'),
+             m2_sum = ('m2', 'sum'),
+             m3_count = ('m3', 'count'),
+             m4_dif = ('m4', 'count'))
+print("\nDF6a\n",df6a)
+
+# To fill NaN with 0 use df['diff'].fillna(0, inplace=True)
+# df['diff'] = df.groupby(['site', 'country'])['score'].diff().fillna(0)
+df6b = df1.copy()
+df6b =  df6b.set_index('contrat')
+print("\nDF6b\n",df6b)
+
+df6b['diff'] = df6b['m4']-df6b['m2']
+
+print("\nDF6b\n",df6b)
+
+# creation d'un dataframe aleatoire
+df7 = pd.DataFrame(np.random.rand(100,5), columns=('a','b','c','d','e'))
+print("\nDF7\n",df7)
+
+#exemple de condition de comparaison avec la valeur 0.5 de la colonne a et création d'une colonne newcol avec b ou c
+# df7.loc[np.logical_and(df7['a'].gt(0.5), np.less_equal(df7['b'],0.5)),'newcol'] = df7['b']
+df7.loc[np.less_equal(df7['a'],0.5),'newcol'] = df7['b']
+df7.loc[df7['a'].gt(0.5),'newcol'] = df7['c']
+df7['newcol'].fillna('0.0', inplace=True)        
+        
+print("\nDF7a\n",df7)
+
+
+# change value by where
+df6c = df1.copy()
+# df6c =  df6c.set_index('contrat')
+print("\nDF6ca\n",df6c)
+# print(df6c.loc[index,"m1"])
+
+df6c.loc[df6c.m1 > 15,'diff2'] = 2
+df6c.loc[df6c.m1 <= 15,'diff2'] = 1
+
+print("\nDF6cb\n",df6c)
+
+df6d = df6c.copy()
+# df6d =  df6d.set_index('contrat')
+print("\nDF6da\n",df6d)
+# print(df6c.loc[index,"m1"])
+
+df6d.loc[(df6d.contrat == 'c1') & (df6d.m2 > 25),'diff3'] = 2
+df6d.loc[(df6d.contrat == 'c1') & (df6d.m2 <= 25),'diff3'] = 1
+df6d.loc[(df6d.contrat != 'c1') , 'diff3'] = 0
+
+print("\nDF6db\n",df6d)
